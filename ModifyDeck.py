@@ -6,3 +6,7 @@ def newCard(deck):
 
 def removeCard(deck, card):
     return deck.remove(card)
+
+def burnCard(deck):
+    burn = deck[randint(0, len(deck)-1)]
+    return deck.remove(burn)

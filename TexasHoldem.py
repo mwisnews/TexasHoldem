@@ -2,50 +2,59 @@ import itertools, random
 from random import randint
 import CreateDeck, ModifyDeck, DealHand
 
+cardsInPlay = []
+
 deck = CreateDeck.createDeck()
 hand = DealHand.dealHand(deck)
 
+#Initial hand is dealt, at this point player is in
+
 print(hand[0].toString() + ' and ' + hand[1].toString())
 
-if(hand[0].value == hand[1].value):
-    print('Hey! Pocket ' + hand[1].value + 's!')
+#First burn card
+ModifyDeck.burnCard(deck)
 
-if(hand[0].color == hand[1].color):
-    print('You have two ' + hand[1].color + '!')
-
-facedown1 = ModifyDeck.newCard(deck)
-ModifyDeck.removeCard(deck, facedown1)
-
+#Flop
 flop1 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop1)
+cardsInPlay.append(flop1)
 
 flop2 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop2)
+cardsInPlay.append(flop2)
 
 flop3 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop3)
+cardsInPlay.append(flop3)
 
 flopResult = 'The cards in play are: ' + flop1.toString() + ', ' + flop2.toString() + ', ' + flop3.toString()
 
 print(flopResult)
 
-facedown2 = ModifyDeck.newCard(deck)
-ModifyDeck.removeCard(deck, facedown2)
+#Second burn card
+ModifyDeck.burnCard(deck)
 
+#Turn
 turn = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, turn)
+cardsInPlay.append(turn)
 
 turnResult = flopResult + ', ' + turn.toString()
 print(turnResult)
 
-facedown3 = ModifyDeck.newCard(deck)
-ModifyDeck.removeCard(deck, facedown3)
+#Third burn card
+ModifyDeck.burnCard(deck)
 
+#River
 river = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, river)
+cardsInPlay.append(river)
 
 riverResult = turnResult + ', ' + river.toString()
 print(riverResult)
+
+#Determine who wins
+
 
 
 
