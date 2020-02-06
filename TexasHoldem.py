@@ -1,22 +1,17 @@
 import itertools, random
 from random import randint
-import CreateDeck, ModifyDeck
+import CreateDeck, ModifyDeck, DealHand
 
 deck = CreateDeck.createDeck()
+hand = DealHand.dealHand(deck)
 
-card1 = ModifyDeck.newCard(deck)
-ModifyDeck.removeCard(deck,card1)
+print(hand[0].toString() + ' and ' + hand[1].toString())
 
-card2 = ModifyDeck.newCard(deck)
-ModifyDeck.removeCard(deck,card2)
+if(hand[0].value == hand[1].value):
+    print('Hey! Pocket ' + hand[1].value + 's!')
 
-print(card1.toString() + ' and ' + card2.toString())
-
-if(card1.value == card2.value):
-    print('Hey! Pocket ' + card1.value + 's!')
-
-if(card1.color == card2.color):
-    print('You have two ' + card1.color + '!')
+if(hand[0].color == hand[1].color):
+    print('You have two ' + hand[1].color + '!')
 
 facedown1 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, facedown1)
