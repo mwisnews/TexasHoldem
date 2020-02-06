@@ -2,6 +2,8 @@ import itertools, random
 import time
 from random import randint
 
+# CreateDeck contains the definition of a Card object as well as the function that creates a shuffled deck
+
 class Card:
     def __init__(self,value,color):
         self.value = value
