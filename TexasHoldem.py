@@ -14,23 +14,25 @@ cardsInHand = ('The cards in your hand are ' + hand[0].toString() + ' and ' + ha
 #First burn card
 ModifyDeck.burnCard(deck)
 
-#Flop
+#Flop first card
 flop1 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop1)
 cardsInPlay.append(flop1)
 
+#Flop second card
 flop2 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop2)
 cardsInPlay.append(flop2)
 
+#Flop third card
 flop3 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop3)
 cardsInPlay.append(flop3)
 
-flopResult = 'The cards in play are: ' + flop1.toString() + ', ' + flop2.toString() + ', ' + flop3.toString()
+playStatus = 'The cards in play are: ' + flop1.toString() + ', ' + flop2.toString() + ', ' + flop3.toString()
 
 print(cardsInHand)
-print(flopResult)
+print(playStatus)
 input()
 
 #Second burn card
@@ -41,11 +43,11 @@ turn = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, turn)
 cardsInPlay.append(turn)
 
-turnResult = flopResult + ', ' + turn.toString()
+playStatus += ', ' + turn.toString()
 
 ClearScreen.clear()
 print(cardsInHand)
-print(turnResult)
+print(playStatus)
 input()
 
 #Third burn card
@@ -56,11 +58,11 @@ river = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, river)
 cardsInPlay.append(river)
 
-riverResult = turnResult + ', ' + river.toString()
+playStatus += ', ' + river.toString()
 
 ClearScreen.clear()
 print(cardsInHand)
-print(riverResult)
+print(playStatus)
 input()
 
 #Determine who wins
