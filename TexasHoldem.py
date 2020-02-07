@@ -1,12 +1,15 @@
 import itertools, random
 from random import randint
-import CreateDeck, ModifyDeck, DealHand, ClearScreen
+import CreateDeck, ModifyDeck, DealHand, ClearScreen, HandLogic
 
 cardsInPlay = []
 totalCards = []
 
 deck = CreateDeck.createDeck()
 hand = DealHand.dealHand(deck)
+
+for i in hand:
+    totalCards.append(i)
 
 #Initial hand is dealt, at this point player is in
 
@@ -19,16 +22,19 @@ ModifyDeck.burnCard(deck)
 flop1 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop1)
 cardsInPlay.append(flop1)
+totalCards.append(flop1)
 
 #Flop second card
 flop2 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop2)
 cardsInPlay.append(flop2)
+totalCards.append(flop2)
 
 #Flop third card
 flop3 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop3)
 cardsInPlay.append(flop3)
+totalCards.append(flop3)
 
 playStatus = 'The cards in play are: ' + flop1.toString() + ', ' + flop2.toString() + ', ' + flop3.toString()
 
@@ -43,6 +49,7 @@ ModifyDeck.burnCard(deck)
 turn = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, turn)
 cardsInPlay.append(turn)
+totalCards.append(turn)
 
 playStatus += ', ' + turn.toString()
 
@@ -58,6 +65,7 @@ ModifyDeck.burnCard(deck)
 river = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, river)
 cardsInPlay.append(river)
+totalCards.append(river)
 
 playStatus += ', ' + river.toString()
 
@@ -66,9 +74,13 @@ print(cardsInHand)
 print(playStatus)
 input()
 
+print(totalCards)
+
 
 
 #Determine who wins
+
+HandLogic.determineHand(totalCards)
 
 
 
