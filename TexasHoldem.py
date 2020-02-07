@@ -74,13 +74,9 @@ print(cardsInHand)
 print(playStatus)
 input()
 
-print(totalCards)
+#Determine what the player has
 
-
-
-#Determine who wins
-
-HandLogic.determineHand(totalCards)
+yourHand = HandLogic.determineHand(totalCards)
 
 
 
