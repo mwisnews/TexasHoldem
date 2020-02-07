@@ -19,4 +19,5 @@ def createDeck():
     time.sleep(random.random())
     random.shuffle(deck)
     time.sleep(random.random())
+    random.shuffle(deck)
     return deck

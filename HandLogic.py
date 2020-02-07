@@ -13,6 +13,16 @@
 #                  9 - Royal Flush
 ###
 
+# Parameters: 
+##          Input: Card array that holds both the cards in the player's hand as well as the cards in play
+###
+##          Output: Array that contains both the determined hand strength (see example) as well as the best 
+#                   5 card hand they can make
+
 def determineHand(hand):
-    hand = 0
-    return hand
+    handStrength = 0
+    bestHand = []
+
+
+    result = [handStrength, bestHand]
+    return result
