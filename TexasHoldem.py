@@ -3,6 +3,7 @@ from random import randint
 import CreateDeck, ModifyDeck, DealHand, ClearScreen
 
 cardsInPlay = []
+totalCards = []
 
 deck = CreateDeck.createDeck()
 hand = DealHand.dealHand(deck)
@@ -64,6 +65,8 @@ ClearScreen.clear()
 print(cardsInHand)
 print(playStatus)
 input()
+
+
 
 #Determine who wins
 
