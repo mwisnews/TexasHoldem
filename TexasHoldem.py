@@ -1,6 +1,6 @@
 import itertools, random
 from random import randint
-import CreateDeck, ModifyDeck, DealHand
+import CreateDeck, ModifyDeck, DealHand, ClearScreen
 
 cardsInPlay = []
 
@@ -9,7 +9,7 @@ hand = DealHand.dealHand(deck)
 
 #Initial hand is dealt, at this point player is in
 
-print(hand[0].toString() + ' and ' + hand[1].toString())
+cardsInHand = ('The cards in your hand are ' + hand[0].toString() + ' and ' + hand[1].toString())
 
 #First burn card
 ModifyDeck.burnCard(deck)
@@ -29,7 +29,9 @@ cardsInPlay.append(flop3)
 
 flopResult = 'The cards in play are: ' + flop1.toString() + ', ' + flop2.toString() + ', ' + flop3.toString()
 
+print(cardsInHand)
 print(flopResult)
+input()
 
 #Second burn card
 ModifyDeck.burnCard(deck)
@@ -40,7 +42,11 @@ ModifyDeck.removeCard(deck, turn)
 cardsInPlay.append(turn)
 
 turnResult = flopResult + ', ' + turn.toString()
+
+ClearScreen.clear()
+print(cardsInHand)
 print(turnResult)
+input()
 
 #Third burn card
 ModifyDeck.burnCard(deck)
@@ -51,7 +57,11 @@ ModifyDeck.removeCard(deck, river)
 cardsInPlay.append(river)
 
 riverResult = turnResult + ', ' + river.toString()
+
+ClearScreen.clear()
+print(cardsInHand)
 print(riverResult)
+input()
 
 #Determine who wins
 
