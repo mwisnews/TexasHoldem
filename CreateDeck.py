@@ -5,16 +5,18 @@ from random import randint
 # CreateDeck contains the definition of a Card object as well as the function that creates a shuffled deck
 
 class Card:
-    def __init__(self,value,color):
+    def __init__(self,value, name, suit):
         self.value = value
-        self.color = color
+        self.suit = suit
+        self.name = name
+
     def toString(self):
-        return self.value + " of " + self.color
+        return self.name + " of " + self.suit
 
 def createDeck():
-    colors = ['hearts', 'diamonds', 'spades', 'clubs']
-    values = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
-    deck = [Card(value,color) for value in values for color in colors]
+    suits = ['hearts', 'diamonds', 'spades', 'clubs']
+    values = {'Ace':14, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, '10':10, 'Jack':11, 'Queen':12, 'King':13}
+    deck = [Card(values[name],name,suit) for name in values for suit in suits]
     random.shuffle(deck)
     time.sleep(random.random())
     random.shuffle(deck)

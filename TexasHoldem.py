@@ -72,6 +72,7 @@ playStatus += ', ' + river.toString()
 ClearScreen.clear()
 print(cardsInHand)
 print(playStatus)
+print(totalCards[0].value)
 input()
 
 #Determine what the player has
