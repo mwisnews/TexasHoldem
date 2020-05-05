@@ -25,13 +25,10 @@ def checkForStraight(values):
     all_Straights = []
     if 14 in hand:
         hand.add(1) ##Add alternative value for Ace
-    #print(hand)
     for starter in (10, 9, 8, 7, 6, 5, 4, 3, 2, 1):
         needed_values = set(range(starter, starter+5))
-        #print(needed_values)
         if(len(needed_values - hand) <= 0):
             all_Straights.append(starter+4)
-    print(all_Straights)
     return all_Straights
 
 def determineHand(hand):
@@ -94,10 +91,11 @@ def determineHand(hand):
         handStrength = 3   
 
     #Check for Straight
-    if checkForStraight(values) != None:
+    if checkForStraight(values) != []:
+        all_Straights = checkForStraight(values)
         handStrength = 4
         high_card = False
-
+    print(handStrength)
 
     #Check for Flush
     for key, value in suits_hist.items():
@@ -213,16 +211,16 @@ def determineHand(hand):
             print('Error in printing what 3 of a kind is')
 
     elif(handStrength == 4):
-        if(checkForStraight(values)[0] == 11):
+        if(all_Straights[0] == 11):
             handType = 'Jack high straight'
-        elif(checkForStraight(values)[0] == 12):
+        elif(all_Straights[0] == 12):
             handType = 'Queen high straight' 
-        elif(checkForStraight(values)[0] == 13):
+        elif(all_Straights[0] == 13):
             handType = 'King high straight'
-        elif(checkForStraight(values)[0] == 14):
+        elif(all_Straights[0] == 14):
             handType = 'Ace high straight'  
         else: 
-            handType = str(checkForStraight(values)[0]) + ' high straight'
+            handType = str(all_Straights[0]) + ' high straight'
 
     elif(handStrength == 5):
         if(flush_values[-1] > 1 and flush_values[-1] <= 10):
