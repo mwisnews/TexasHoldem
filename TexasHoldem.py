@@ -21,18 +21,21 @@ ModifyDeck.burnCard(deck)
 #Flop first card
 flop1 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop1)
+#flop1 = CreateDeck.Card(2,'Queen', "Hearts")
 cardsInPlay.append(flop1)
 totalCards.append(flop1)
 
 #Flop second card
 flop2 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop2)
+#flop2 = CreateDeck.Card(3, 'King', 'Diamonds')
 cardsInPlay.append(flop2)
 totalCards.append(flop2)
 
 #Flop third card
 flop3 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop3)
+#flop3 = CreateDeck.Card(14, 'Ace', 'Spades')
 cardsInPlay.append(flop3)
 totalCards.append(flop3)
 
@@ -48,6 +51,7 @@ ModifyDeck.burnCard(deck)
 #Turn
 turn = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, turn)
+#turn = CreateDeck.Card(4, 'Ten', 'Clubs')
 cardsInPlay.append(turn)
 totalCards.append(turn)
 
@@ -64,6 +68,7 @@ ModifyDeck.burnCard(deck)
 #River
 river = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, river)
+#river = CreateDeck.Card(5, 'Jack', 'Hearts')
 cardsInPlay.append(river)
 totalCards.append(river)
 
@@ -72,13 +77,10 @@ playStatus += ', ' + river.toString()
 ClearScreen.clear()
 print(cardsInHand)
 print(playStatus)
-print(totalCards[0].value)
-input()
+#input()
 
 #Determine what the player has
 
 yourHand = HandLogic.determineHand(totalCards)
 
-
-
-
+print(yourHand)

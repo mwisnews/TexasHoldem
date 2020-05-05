@@ -1,3 +1,4 @@
+from collections import Counter
 ###
 #  For the determine hand function, I thought it would be beneficial to represent a poker hand as an integer
 #
@@ -17,14 +18,41 @@
 ##          Input: Card array that holds both the cards in the player's hand as well as the cards in play
 ###
 ##          Output: Array that contains the determined hand strength (see example), the type of hand (ex straight, pair, etc)
-#                   as well as the best 5 card hand they can make
+#
+
+def checkForStraight(values):
+    hand = set(values)
+    if 14 in hand:
+        hand.add(1) ##Add alternative value for Ace
+    #print(hand)
+    for starter in (10, 9, 8, 7, 6, 5, 4, 3, 2, 1):
+        needed_values = set(range(starter, starter+5))
+        #print(needed_values)
+        if(len(needed_values - hand) <= 0):
+            return starter + 4
 
 def determineHand(hand):
     handStrength = 0
     handType = ''
     bestHand = []
+    values = []
+    suits = []
+    flush = False
+    high_card = True
 
+    for card in hand:
+        values.append(card.value)
+        suits.append(card.suit)
+    
+    value_hist = Counter(values)
+    suits_hist = Counter(suits)
+   
+    print(value_hist)
+    print(suits_hist)
 
+    if checkForStraight(values) != None:
+        handStrength = 4
+        high_card = False
 
     if(handStrength == 0):
         handType = 'High Card'
@@ -35,7 +63,16 @@ def determineHand(hand):
     elif(handStrength == 3):
         handType = 'Three of a Kind'
     elif(handStrength == 4):
-        handType = 'Straight'
+        if(checkForStraight(values) == 11):
+            handType = 'Jack high straight'
+        elif(checkForStraight(values) == 12):
+            handType = 'Queen high straight' 
+        elif(checkForStraight(values) == 13):
+            handType = 'King high straight'
+        elif(checkForStraight(values) == 14):
+            handType = 'Ace high straight'  
+        else: 
+            handType = str(checkForStraight(values)) + ' high straight'
     elif(handStrength == 5):
         handType = 'Flush'
     elif(handStrength == 6):
