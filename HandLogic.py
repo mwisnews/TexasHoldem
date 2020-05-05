@@ -22,6 +22,7 @@ from collections import Counter
 
 def checkForStraight(values):
     hand = set(values)
+    all_Straights = []
     if 14 in hand:
         hand.add(1) ##Add alternative value for Ace
     #print(hand)
@@ -29,7 +30,9 @@ def checkForStraight(values):
         needed_values = set(range(starter, starter+5))
         #print(needed_values)
         if(len(needed_values - hand) <= 0):
-            return starter + 4
+            all_Straights.append(starter+4)
+    print(all_Straights)
+    return all_Straights
 
 def determineHand(hand):
     handStrength = 0
@@ -132,6 +135,24 @@ def determineHand(hand):
     #Check for Quads
     if len(quadruple) > 0:
         handStrength = 7
+    
+    #Check for Straight Flush
+    straight_values = []
+    straight_flush_high = 0
+    if checkForStraight(values) != None:
+        high_list = checkForStraight(values)
+        for high in high_list:
+            if flush_suit != '':
+                straight_values.append(high)
+                straight_values.append(high-1)
+                straight_values.append(high-2)
+                straight_values.append(high-3)
+                straight_values.append(high-4)
+                straight_values.sort()
+                if all(elem in flush_values for elem in straight_values):
+                    straight_flush_high = straight_values[-1]
+                    handStrength = 8
+                
 
     if(handStrength == 0):
         handType = 'High Card'
@@ -192,16 +213,16 @@ def determineHand(hand):
             print('Error in printing what 3 of a kind is')
 
     elif(handStrength == 4):
-        if(checkForStraight(values) == 11):
+        if(checkForStraight(values)[0] == 11):
             handType = 'Jack high straight'
-        elif(checkForStraight(values) == 12):
+        elif(checkForStraight(values)[0] == 12):
             handType = 'Queen high straight' 
-        elif(checkForStraight(values) == 13):
+        elif(checkForStraight(values)[0] == 13):
             handType = 'King high straight'
-        elif(checkForStraight(values) == 14):
+        elif(checkForStraight(values)[0] == 14):
             handType = 'Ace high straight'  
         else: 
-            handType = str(checkForStraight(values)) + ' high straight'
+            handType = str(checkForStraight(values)[0]) + ' high straight'
 
     elif(handStrength == 5):
         if(flush_values[-1] > 1 and flush_values[-1] <= 10):
@@ -256,12 +277,22 @@ def determineHand(hand):
         elif quadruple[0] == 14:
             handType = 'Four Aces'
         else:
-            print('Error in printing what pair is')
-            
+            print('Error in printing what four of a kind is')
+
     elif(handStrength == 8):
-        handType = 'Straight Flush'
-    elif(handStrength == 9):
-        handType = 'Royal Flush'
+        if straight_flush_high <= 10 and straight_flush_high >1:
+            handType = str(straight_flush_high) + ' high Straight Flush'
+        elif straight_flush_high == 11:
+            handType = 'Jack high Straight Flush'
+        elif straight_flush_high == 12:
+            handType = 'Queen high Straight Flush'
+        elif straight_flush_high == 13:
+            handType = 'King high Straight Flush'
+        elif straight_flush_high == 14:
+            handType = 'Royal Flush'
+            handStrength = 9
+        else:
+            print('Error in printing what pair is')
     else:
         handType = 'Error'
 
