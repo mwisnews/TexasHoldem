@@ -28,14 +28,14 @@ totalCards.append(flop1)
 #Flop second card
 flop2 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop2)
-#flop2 = CreateDeck.Card(13, 'King', 'diamonds')
+#flop2 = CreateDeck.Card(9, '9', 'spades')
 cardsInPlay.append(flop2)
 totalCards.append(flop2)
 
 #Flop third card
 flop3 = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, flop3)
-#flop3 = CreateDeck.Card(12, 'Queen', 'diamonds')
+#flop3 = CreateDeck.Card(9, '9', 'clubs')
 cardsInPlay.append(flop3)
 totalCards.append(flop3)
 
@@ -51,7 +51,7 @@ ModifyDeck.burnCard(deck)
 #Turn
 turn = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, turn)
-#turn = CreateDeck.Card(6, '6', 'diamonds')
+#turn = CreateDeck.Card(9, '9', 'hearts')
 cardsInPlay.append(turn)
 totalCards.append(turn)
 
@@ -68,7 +68,7 @@ ModifyDeck.burnCard(deck)
 #River
 river = ModifyDeck.newCard(deck)
 ModifyDeck.removeCard(deck, river)
-#river = CreateDeck.Card(11, 'Jack', 'diamonds')
+#river = CreateDeck.Card(6, '6', 'hearts')
 cardsInPlay.append(river)
 totalCards.append(river)
 

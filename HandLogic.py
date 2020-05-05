@@ -129,6 +129,9 @@ def determineHand(hand):
             pairs.append(triple[1])
             triple.remove(triple[1])
 
+    #Check for Quads
+    if len(quadruple) > 0:
+        handStrength = 7
 
     if(handStrength == 0):
         handType = 'High Card'
@@ -186,7 +189,7 @@ def determineHand(hand):
         elif triple[0] == 14:
             handType = 'Three Aces'
         else:
-            print('Error in printing what pair is')
+            print('Error in printing what 3 of a kind is')
 
     elif(handStrength == 4):
         if(checkForStraight(values) == 11):
@@ -215,9 +218,46 @@ def determineHand(hand):
             print('Error determining flush high card')
 
     elif(handStrength == 6):
-        handType = 'Full House'
+        trip_name = triple[0]
+        pair_name = pairs[0]
+
+        if trip_name == 11:
+            trip_name = 'Jack'
+        elif trip_name == 12:
+            trip_name = 'Queen'
+        elif trip_name == 13:
+            trip_name = 'King'
+        elif trip_name == 14:
+            trip_name = 'Ace'
+        else:
+            pass
+
+        if pair_name == 11:
+            pair_name = 'Jack'
+        elif pair_name == 12:
+            pair_name = 'Queen'
+        elif pair_name == 13:
+            pair_name = 'King'
+        elif pair_name == 14:
+            pair_name = 'Ace'
+        else:
+            pass
+        handType = 'Full House: 3 ' + str(trip_name) + 's and 2 ' + str(pair_name) + 's'
+
     elif(handStrength == 7):
-        handType = 'Four of a Kind'
+        if quadruple[0] <= 10 and quadruple[0] >1:
+            handType = 'Four ' + str(quadruple[0]) + 's'
+        elif quadruple[0] == 11:
+            handType = 'Four Jacks'
+        elif quadruple[0] == 12:
+            handType = 'Four Queens'
+        elif quadruple[0] == 13:
+            handType = 'Four Kings'
+        elif quadruple[0] == 14:
+            handType = 'Four Aces'
+        else:
+            print('Error in printing what pair is')
+            
     elif(handStrength == 8):
         handType = 'Straight Flush'
     elif(handStrength == 9):
