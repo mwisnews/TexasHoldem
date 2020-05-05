@@ -38,7 +38,6 @@ def determineHand(hand):
     values = []
     suits = []
     flush_suit = ''
-    high_card = True
 
     for card in hand:
         values.append(card.value)
@@ -58,13 +57,10 @@ def determineHand(hand):
         if(value == 1):
             pass
         elif(value == 2):
-            high_card = False
             pairs.append(key)
         elif(value == 3):
-            high_card = False
             triple.append(key)
         elif(value == 4):
-            high_card = False
             quadruple.append(key)
         else:
             print("Error in searching for pairs")
@@ -94,8 +90,6 @@ def determineHand(hand):
     if checkForStraight(values) != []:
         all_Straights = checkForStraight(values)
         handStrength = 4
-        high_card = False
-    print(handStrength)
 
     #Check for Flush
     for key, value in suits_hist.items():
@@ -153,19 +147,31 @@ def determineHand(hand):
                 
 
     if(handStrength == 0):
-        handType = 'High Card'
+        values.sort()
+        if values[-1] > 1 and values[-1] <= 10:
+            handType = str(values[-1]) + ' High'
+        elif values[-1] == 11:
+            handType = 'Jack High'
+        elif values[-1] == 12:
+            handType = 'Queen High'
+        elif values[-1] == 13:
+            handType = 'King High'
+        elif values[-1] == 14:
+            handType = 'Ace High'
+        else:
+            handType = 'High Card Error'
 
     elif(handStrength == 1):
         if pairs[0] <= 10 and pairs[0] >1:
-            handType = 'Pair of ' + str(pairs[0]) + 's'
+            handType = 'A Pair of ' + str(pairs[0]) + 's'
         elif pairs[0] == 11:
-            handType = 'Pair of Jacks'
+            handType = 'A Pair of Jacks'
         elif pairs[0] == 12:
-            handType = 'Pair of Queens'
+            handType = 'A Pair of Queens'
         elif pairs[0] == 13:
-            handType = 'Pair of Kings'
+            handType = 'A Pair of Kings'
         elif pairs[0] == 14:
-            handType = 'Pair of Aces'
+            handType = 'A Pair of Aces'
         else:
             print('Error in printing what pair is')
 
@@ -212,27 +218,27 @@ def determineHand(hand):
 
     elif(handStrength == 4):
         if(all_Straights[0] == 11):
-            handType = 'Jack high straight'
+            handType = 'A Jack high straight'
         elif(all_Straights[0] == 12):
-            handType = 'Queen high straight' 
+            handType = 'A Queen high straight' 
         elif(all_Straights[0] == 13):
-            handType = 'King high straight'
+            handType = 'A King high straight'
         elif(all_Straights[0] == 14):
-            handType = 'Ace high straight'  
+            handType = 'An Ace high straight'  
         else: 
-            handType = str(all_Straights[0]) + ' high straight'
+            handType = 'A ' + str(all_Straights[0]) + ' high straight'
 
     elif(handStrength == 5):
         if(flush_values[-1] > 1 and flush_values[-1] <= 10):
-            handType = str(flush_values[-1]) + ' high ' + str(flush_suit) + ' Flush'
+            handType = 'A ' + str(flush_values[-1]) + ' high ' + str(flush_suit) + ' Flush'
         elif(flush_values[-1] == 11):
-            handType = 'Jack high ' + str(flush_suit) + ' Flush'
+            handType = 'A Jack high ' + str(flush_suit) + ' Flush'
         elif(flush_values[-1] == 12):
-            handType = 'Queen high ' + str(flush_suit) + ' Flush'
+            handType = 'A Queen high ' + str(flush_suit) + ' Flush'
         elif(flush_values[-1] == 13):
-            handType = 'King high ' + str(flush_suit) + ' Flush'
+            handType = 'A King high ' + str(flush_suit) + ' Flush'
         elif(flush_values[-1] == 14):
-            handType = 'Ace high ' + str(flush_suit) + ' Flush'
+            handType = 'An Ace high ' + str(flush_suit) + ' Flush'
         else:
             print('Error determining flush high card')
 
@@ -279,15 +285,15 @@ def determineHand(hand):
 
     elif(handStrength == 8):
         if straight_flush_high <= 10 and straight_flush_high >1:
-            handType = str(straight_flush_high) + ' high Straight Flush'
+            handType = 'A ' + str(straight_flush_high) + ' high Straight Flush'
         elif straight_flush_high == 11:
-            handType = 'Jack high Straight Flush'
+            handType = 'A Jack high Straight Flush'
         elif straight_flush_high == 12:
-            handType = 'Queen high Straight Flush'
+            handType = 'A Queen high Straight Flush'
         elif straight_flush_high == 13:
-            handType = 'King high Straight Flush'
+            handType = 'A King high Straight Flush'
         elif straight_flush_high == 14:
-            handType = 'Royal Flush'
+            handType = 'A Royal Flush'
             handStrength = 9
         else:
             print('Error in printing what pair is')

@@ -83,4 +83,4 @@ print(playStatus)
 #Determine what the player has
 yourHand = HandLogic.determineHand(totalCards)
 
-print(yourHand)
+print('You have: ' + yourHand[1])
